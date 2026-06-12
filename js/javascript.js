@@ -292,7 +292,54 @@ function draw() {
 
     ctx.shadowBlur = 0;
   }
+// ============================================
+// CORAZÓN RELLENO
+// ============================================
 
+ctx.save();
+
+const heartScale = 12 * pulse;
+
+ctx.translate(centerX, centerY - 120);
+
+ctx.beginPath();
+
+for (let t = 0; t <= Math.PI * 2; t += 0.02) {
+  const x = 16 * Math.pow(Math.sin(t), 3);
+  const y = -(
+    13 * Math.cos(t)
+    - 5 * Math.cos(2 * t)
+    - 2 * Math.cos(3 * t)
+    - Math.cos(4 * t)
+  );
+
+  if (t === 0) {
+    ctx.moveTo(x * heartScale, y * heartScale);
+  } else {
+    ctx.lineTo(x * heartScale, y * heartScale);
+  }
+}
+
+ctx.closePath();
+
+// degradado rosa brillante
+const heartGradient = ctx.createRadialGradient(
+  0, -20, 10,
+  0, 0, 200
+);
+
+heartGradient.addColorStop(0, "#ff9acb");
+heartGradient.addColorStop(0.4, "#ff4f9a");
+heartGradient.addColorStop(1, "#d4005f");
+
+ctx.fillStyle = heartGradient;
+
+ctx.shadowBlur = 40;
+ctx.shadowColor = "#ff4f9a";
+
+ctx.fill();
+
+ctx.restore();
   // corazón
   const pulse = Math.sin(globalTime * 0.03) * 0.2 + 1;
 
