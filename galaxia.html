@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galaxia con Fotos</title>
+
+    <link rel="stylesheet" href="css/pagina2.css" />
+  </head>
+
+  <body>
+    <!-- ===================================== -->
+    <!-- BOTÓN FULLSCREEN -->
+    <!-- ===================================== -->
+    <button class="btn-fullscreen" id="btnFullscreen" title="Pantalla completa">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+        />
+      </svg>
+    </button>
+
+    <!-- ===================================== -->
+    <!-- BOTÓN PAUSA -->
+    <!-- ===================================== -->
+    <button class="btn-pause" id="btnPause" title="Pausar/Reanudar">
+      <span id="pauseIcon">⏸</span>
+    </button>
+
+    <!-- ===================================== -->
+    <!-- BOTÓN MÚSICA -->
+    <!-- ===================================== -->
+    <button class="btn-music" id="btnMusic" title="Música">🎵</button>
+
+    <!-- ===================================== -->
+    <!-- CANVAS GALAXIA -->
+    <!-- ===================================== -->
+    <canvas id="galaxyCanvas"></canvas>
+
+    <!-- ===================================== -->
+    <!-- MODAL IMAGEN -->
+    <!-- ===================================== -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">✕</button>
+
+        <div class="modal-image-container">
+          <img id="modalImage" src="" alt="Imagen ampliada" />
+        </div>
+
+        <div class="modal-message" id="modalMessage"></div>
+      </div>
+    </div>
+
+    <!-- ===================================== -->
+    <!-- AUDIO DE FONDO -->
+    <!-- ===================================== -->
+   <audio id="musica" autoplay loop>
+    <source src="Audios/James.mp3" type="audio/mpeg">
+</audio>
+
+    <!-- ===================================== -->
+    <!-- SCRIPT -->
+    <!-- ===================================== -->
+    <script src="js/javascript.js"></script>
+  </body>
+</html>

@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #0f1729 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efectos de luz de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.logo-corner {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    z-index: 1000;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-corner svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* Contenedor principal con fondo oscuro */
+.container {
+    width: 100%;
+    max-width: 700px;
+    min-height: 500px;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 20, 50, 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    position: relative;
+    animation: fadeIn 1s ease;
+}
+
+.title {
+    font-size: 64px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3);
+    animation: fadeInDown 1s ease;
+    font-family: 'Georgia', serif;
+}
+
+.bears-container {
+    position: relative;
+    width: 280px;
+    height: 220px;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bears-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.hearts {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.heart {
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.heart:nth-child(2) {
+    animation-delay: 0.3s;
+    width: 20px;
+    height: 20px;
+}
+
+.heart:nth-child(3) {
+    animation-delay: 0.6s;
+    width: 15px;
+    height: 15px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #c0c0c0;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    animation: fadeInUp 1s ease 0.5s both;
+    font-weight: 300;
+}
+
+.btn-iniciar {
+    padding: 12px 50px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease 0.8s both;
+    backdrop-filter: blur(10px);
+}
+
+.btn-iniciar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+}
+
+.btn-iniciar:active {
+    transform: translateY(-1px);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: 40px 30px;
+        min-height: 400px;
+    }
+    
+    .title {
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+    
+    .bears-container {
+        width: 230px;
+        height: 180px;
+    }
+    
+    .btn-iniciar {
+        padding: 10px 40px;
+        font-size: 12px;
+    }
+    
+    .logo-corner {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .logo-corner svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+        min-height: 350px;
+    }
+    
+    .title {
+        font-size: 36px;
+        margin-bottom: 25px;
+    }
+    
+    .bears-container {
+        width: 180px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .btn-iniciar {
+        padding: 10px 30px;
+        font-size: 11px;
+    }
+}
