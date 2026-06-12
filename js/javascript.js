@@ -7,7 +7,6 @@ const ctx = canvas.getContext("2d");
 let width, height, centerX, centerY;
 let globalTime = 0;
 let paused = false;
-const GALAXY_SPEED = 30;
 
 let mouseX = 0;
 let mouseY = 0;
@@ -84,7 +83,7 @@ for (let i = 0; i < numGalaxy; i++) {
   galaxyParticles.push({
     angle: baseAngle + spin + noise,
     distance,
-    speed: 0.005 + Math.random() * 0.008,
+    speed: 0.0018 + Math.random() * 0.0025,
     size: Math.random() * 2.5 + 0.3,
     depth: Math.random(),
   });
@@ -185,7 +184,7 @@ photoData.forEach((p, i) => {
     data: p,
     angle: (i / photoData.length) * Math.PI * 2,
     distance: 270,
-    speed: 0.01,
+    speed: 0.0018,
     size: 40,
     x: 0,
     y: 0,
@@ -269,7 +268,7 @@ function draw() {
 
   // galaxia azul neón
   for (const p of galaxyParticles) {
-    if (!paused) p.angle += p.speed * GALAXY_SPEED;
+    if (!paused) p.angle += p.speed;
 
     const x = centerX + Math.cos(p.angle) * p.distance;
     const y = centerY + Math.sin(p.angle) * p.distance * 0.45;
@@ -292,56 +291,9 @@ function draw() {
 
     ctx.shadowBlur = 0;
   }
-// ============================================
-// CORAZÓN RELLENO
-// ============================================
 
-ctx.save();
-
-const heartScale = 12 * pulse;
-
-ctx.translate(centerX, centerY - 120);
-
-ctx.beginPath();
-
-for (let t = 0; t <= Math.PI * 2; t += 0.02) {
-  const x = 16 * Math.pow(Math.sin(t), 3);
-  const y = -(
-    13 * Math.cos(t)
-    - 5 * Math.cos(2 * t)
-    - 2 * Math.cos(3 * t)
-    - Math.cos(4 * t)
-  );
-
-  if (t === 0) {
-    ctx.moveTo(x * heartScale, y * heartScale);
-  } else {
-    ctx.lineTo(x * heartScale, y * heartScale);
-  }
-}
-
-ctx.closePath();
-
-// degradado rosa brillante
-const heartGradient = ctx.createRadialGradient(
-  0, -20, 10,
-  0, 0, 200
-);
-
-heartGradient.addColorStop(0, "#ff9acb");
-heartGradient.addColorStop(0.4, "#ff4f9a");
-heartGradient.addColorStop(1, "#d4005f");
-
-ctx.fillStyle = heartGradient;
-
-ctx.shadowBlur = 40;
-ctx.shadowColor = "#ff4f9a";
-
-ctx.fill();
-
-ctx.restore();
   // corazón
-  const pulse = Math.sin(globalTime * 0.03) * 0.2 + 1;
+  const pulse = Math.sin(globalTime * 0.01) * 0.2 + 1;
 
   for (const p of heartParticles) {
     const x = p.baseX + Math.sin(globalTime * 0.003 + p.offset) * 10;
@@ -355,7 +307,7 @@ ctx.restore();
 
   // texto orbital
   for (const t of textParticles) {
-    if (!paused) t.angle += t.speed * GALAXY_SPEED;
+    if (!paused) t.angle += t.speed;
 
     const x = centerX + Math.cos(t.angle) * t.distance;
     const y = centerY + Math.sin(t.angle) * t.distance * 0.35;
@@ -368,7 +320,7 @@ ctx.restore();
 
   // fotos
   for (const p of photos) {
-    if (!paused) p.angle += p.speed * GALAXY_SPEED;
+    if (!paused) p.angle += p.speed;
 
     p.x = centerX + Math.cos(p.angle) * p.distance;
     p.y = centerY + Math.sin(p.angle) * p.distance * 0.35;
