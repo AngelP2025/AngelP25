@@ -7,6 +7,7 @@ const ctx = canvas.getContext("2d");
 let width, height, centerX, centerY;
 let globalTime = 0;
 let paused = false;
+const GALAXY_SPEED = 30;
 
 let mouseX = 0;
 let mouseY = 0;
@@ -83,7 +84,7 @@ for (let i = 0; i < numGalaxy; i++) {
   galaxyParticles.push({
     angle: baseAngle + spin + noise,
     distance,
-    speed: 0.0018 + Math.random() * 0.0025,
+    speed: 0.005 + Math.random() * 0.008,
     size: Math.random() * 2.5 + 0.3,
     depth: Math.random(),
   });
@@ -184,7 +185,7 @@ photoData.forEach((p, i) => {
     data: p,
     angle: (i / photoData.length) * Math.PI * 2,
     distance: 270,
-    speed: 0.0018,
+    speed: 0.01,
     size: 40,
     x: 0,
     y: 0,
@@ -268,7 +269,7 @@ function draw() {
 
   // galaxia azul neón
   for (const p of galaxyParticles) {
-    if (!paused) p.angle += p.speed;
+    if (!paused) p.angle += p.speed * GALAXY_SPEED;
 
     const x = centerX + Math.cos(p.angle) * p.distance;
     const y = centerY + Math.sin(p.angle) * p.distance * 0.45;
@@ -293,7 +294,7 @@ function draw() {
   }
 
   // corazón
-  const pulse = Math.sin(globalTime * 0.01) * 0.2 + 1;
+  const pulse = Math.sin(globalTime * 0.03) * 0.2 + 1;
 
   for (const p of heartParticles) {
     const x = p.baseX + Math.sin(globalTime * 0.003 + p.offset) * 10;
@@ -307,7 +308,7 @@ function draw() {
 
   // texto orbital
   for (const t of textParticles) {
-    if (!paused) t.angle += t.speed;
+    if (!paused) t.angle += t.speed * GALAXY_SPEED;
 
     const x = centerX + Math.cos(t.angle) * t.distance;
     const y = centerY + Math.sin(t.angle) * t.distance * 0.35;
@@ -320,7 +321,7 @@ function draw() {
 
   // fotos
   for (const p of photos) {
-    if (!paused) p.angle += p.speed;
+    if (!paused) p.angle += p.speed * GALAXY_SPEED;
 
     p.x = centerX + Math.cos(p.angle) * p.distance;
     p.y = centerY + Math.sin(p.angle) * p.distance * 0.35;
